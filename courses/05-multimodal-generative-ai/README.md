@@ -1,6 +1,6 @@
 # 05 · Build Multimodal Generative AI Applications
 
-[Course on Coursera](https://www.coursera.org/learn/build-multimodal-generative-ai-applications) · Status: 🟡 In progress (~90%)
+[Course on Coursera](https://www.coursera.org/learn/build-multimodal-generative-ai-applications) · Status: 🟢 Done
 
 ## What I built
 

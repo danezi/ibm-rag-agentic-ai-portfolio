@@ -2,7 +2,7 @@
 
 Applications I built while completing the [IBM RAG and Agentic AI Professional Certificate](https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai) on Coursera: retrieval-augmented generation (RAG), vector databases, multimodal generative AI and AI agents, built with LangChain, LlamaIndex, ChromaDB, FAISS and IBM watsonx.ai.
 
-The first four courses are completed and certified as the specialization [RAG for Generative AI Applications](https://coursera.org/verify/specialization/2B5H65S6YI0B).
+The first four courses are also certified as the specialization [RAG for Generative AI Applications](https://coursera.org/verify/specialization/2B5H65S6YI0B).
 
 ## Highlights
 
@@ -33,7 +33,7 @@ The first four courses are completed and certified as the specialization [RAG fo
 - **RAG:** document loading and chunking, embeddings, retrievers (MMR, multi-query, self-query, parent document, BM25, query fusion), grounded prompts
 - **Vector databases:** ChromaDB collections with metadata filters, FAISS indexes, cosine / L2 / dot-product similarity
 - **Multimodal AI:** speech-to-text (Whisper), text-to-speech (gTTS), image generation, image captioning and visual Q&A, multimodal RAG with image embeddings
-- **AI agents:** tool calling with LangChain (`@tool`, `create_agent`), multi-tool agents, built-in tools (Wikipedia)
+- **AI agents:** tool calling with LangChain (`@tool`, `bind_tools`, `create_agent`), hand-written and recursive tool loops, LCEL chains, pandas DataFrame and SQL agents, built-in tools (Wikipedia, YouTube)
 - **Delivery:** Gradio and Flask web apps, structured JSON responses
 
 ## Course progress
@@ -46,8 +46,8 @@ Legend: 🟢 Done · 🟡 In progress · ⚪ Not started
 | 2 | [Build RAG Applications: Get Started](courses/02-build-rag-applications/README.md) | 🟢 Done |
 | 3 | [Vector Databases for RAG: An Introduction](courses/03-vector-databases-for-rag/README.md) | 🟢 Done |
 | 4 | [Advanced RAG with Vector Databases and Retrievers](courses/04-advanced-rag-retrievers/README.md) | 🟢 Done |
-| 5 | [Build Multimodal Generative AI Applications](courses/05-multimodal-generative-ai/README.md) | 🟡 In progress (~90%) |
-| 6 | [Fundamentals of Building AI Agents](courses/06-building-ai-agents/README.md) | 🟡 In progress (~15%) |
+| 5 | [Build Multimodal Generative AI Applications](courses/05-multimodal-generative-ai/README.md) | 🟢 Done |
+| 6 | [Fundamentals of Building AI Agents](courses/06-building-ai-agents/README.md) | 🟢 Done |
 | 7 | [Agentic AI with LangChain and LangGraph](courses/07-agentic-ai-langchain-langgraph/README.md) | ⚪ Not started |
 | 8 | [Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI](courses/08-multi-agent-frameworks/README.md) | ⚪ Not started |
 | 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | ⚪ Not started |
