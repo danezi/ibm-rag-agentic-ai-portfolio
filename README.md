@@ -18,6 +18,7 @@ The first four courses are also certified as the specialization [RAG for Generat
 
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?logo=langchain&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C)
 ![LlamaIndex](https://img.shields.io/badge/LlamaIndex-000000)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-FF6446)
 ![FAISS](https://img.shields.io/badge/FAISS-0467DF)
@@ -34,6 +35,7 @@ The first four courses are also certified as the specialization [RAG for Generat
 - **Vector databases:** ChromaDB collections with metadata filters, FAISS indexes, cosine / L2 / dot-product similarity
 - **Multimodal AI:** speech-to-text (Whisper), text-to-speech (gTTS), image generation, image captioning and visual Q&A, multimodal RAG with image embeddings
 - **AI agents:** tool calling with LangChain (`@tool`, `bind_tools`, `create_agent`), hand-written and recursive tool loops, LCEL chains, pandas DataFrame and SQL agents, built-in tools (Wikipedia, YouTube)
+- **Agentic workflows:** LangGraph state graphs with nodes, conditional edges and loops; self-improving reflection agents
 - **Delivery:** Gradio and Flask web apps, structured JSON responses
 
 ## Course progress
@@ -48,7 +50,7 @@ Legend: 🟢 Done · 🟡 In progress · ⚪ Not started
 | 4 | [Advanced RAG with Vector Databases and Retrievers](courses/04-advanced-rag-retrievers/README.md) | 🟢 Done |
 | 5 | [Build Multimodal Generative AI Applications](courses/05-multimodal-generative-ai/README.md) | 🟢 Done |
 | 6 | [Fundamentals of Building AI Agents](courses/06-building-ai-agents/README.md) | 🟢 Done |
-| 7 | [Agentic AI with LangChain and LangGraph](courses/07-agentic-ai-langchain-langgraph/README.md) | ⚪ Not started |
+| 7 | [Agentic AI with LangChain and LangGraph](courses/07-agentic-ai-langchain-langgraph/README.md) | 🟡 In progress (~42%) |
 | 8 | [Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI](courses/08-multi-agent-frameworks/README.md) | ⚪ Not started |
 | 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | ⚪ Not started |
 | 10 | [RAG and Agentic AI Capstone Project](courses/10-capstone-project/README.md) | ⚪ Not started |
