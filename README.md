@@ -66,7 +66,7 @@ In line with the Coursera Honor Code, lab solutions and course materials are kep
 - Master Informatik – Vertrauenswürdige Systeme (Hochschule Bremerhaven): all modules completed, chose direct career entry
 - Working student at Beezubi Lernwelt GmbH: AI-powered data pipelines and a learning app
 - GitHub: [github.com/danezi](https://github.com/danezi)
-- LinkedIn: [linkedin.com/in/zidane-kenfack-651421222](https://www.linkedin.com/in/zidane-kenfack-651421222)
+- LinkedIn: [linkedin.com/in/zidane-kenfack-fouape-651421222](https://www.linkedin.com/in/zidane-kenfack-fouape-651421222/)
 
 ## License
 
