@@ -1,14 +1,39 @@
 # 08 · Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI
 
-[Course on Coursera](https://www.coursera.org/learn/agentic-ai-with-langgraph-crewai-autogen-and-beeai) · Status: 🟡 In progress (~10%)
+[Course on Coursera](https://www.coursera.org/learn/agentic-ai-with-langgraph-crewai-autogen-and-beeai) · Status: 🟡 In progress (~20%)
 
 ## What I built
 
-The three core LLM workflow patterns as LangGraph graphs: a job application assistant that chains a resume summary into a cover letter, a router that sends each request to the right handler, and a translator that produces French, Spanish and Japanese versions in parallel. On top of that, a request router for a delivery-style app that uses tool calling to choose between ride hailing, restaurant orders, groceries and a fallback handler.
+The core LLM workflow patterns as LangGraph graphs. Basic patterns: a job application assistant that chains a resume summary into a cover letter, a router that sends each request to the right handler (ride hailing, restaurant orders, groceries or a fallback), and a translator that produces three languages in parallel. Advanced patterns: an orchestrator-worker meal planner that splits a meal list into dishes and starts one "chef" worker per dish, and an evaluator-optimizer loop in which one LLM role writes an investment plan and another grades its risk until it matches the investor's profile.
 
 ## Architecture
 
-**Request router (exercise)**
+**Evaluator-optimizer (investment plan)**
+
+```mermaid
+flowchart LR
+    P["Investor profile"] --> T["Determine<br/>target risk grade"]
+    T --> G["Generator<br/>(writes / revises plan)"]
+    G --> EV["Evaluator<br/>(grades risk,<br/>gives feedback)"]
+    EV --> R{"Grade = target<br/>or limit reached?"}
+    R -->|no, feedback| G
+    R -->|yes| OUT(["Final plan"])
+```
+
+**Orchestrator-worker (meal guide)**
+
+```mermaid
+flowchart LR
+    M["Meal list"] --> O["Orchestrator<br/>(structured dish list)"]
+    O -->|"Send: one task<br/>per dish"| W1["Chef worker 1"]
+    O --> W2["Chef worker 2"]
+    O --> W3["Chef worker n"]
+    W1 --> S["Synthesizer<br/>(merged guide)"]
+    W2 --> S
+    W3 --> S
+```
+
+**Request router**
 
 ```mermaid
 flowchart LR
@@ -19,35 +44,25 @@ flowchart LR
     R -->|no match| D["Default handler"]
 ```
 
-**Parallelization**
-
-```mermaid
-flowchart LR
-    S(["START"]) --> F["French"]
-    S --> ES["Spanish"]
-    S --> J["Japanese"]
-    F --> AG["Aggregator"]
-    ES --> AG
-    J --> AG
-    AG --> E(["END"])
-```
-
 ## Projects & labs
 
 | Project | What it does | Key techniques | Stack |
 |---|---|---|---|
-| **Workflow patterns** | Job application assistant (resume summary → cover letter), summarize/translate router, parallel translator | Prompt chaining, routing with conditional edges, parallel branches with an aggregator | LangGraph, LangChain, GPT-4o mini |
-| **Request router** | Sends requests to ride-hailing, restaurant, grocery or fallback handlers | Tool-calling classifier with a Pydantic model, fallback route | LangGraph, LangChain, GPT-4o mini |
+| Workflow patterns | Job application assistant, summarize/translate router, parallel translator | Prompt chaining, routing with conditional edges, parallel branches with an aggregator | LangGraph, LangChain, GPT-4o mini |
+| Request router | Sends requests to ride-hailing, restaurant, grocery or fallback handlers | Tool-calling classifier with a Pydantic model, fallback route | LangGraph, LangChain, GPT-4o mini |
+| **Meal guide (orchestrator-worker)** | Splits a meal list into dishes and writes a cooking guide per dish | Structured output, dynamic fan-out with the `Send` API, reducer to collect results, synthesizer | LangGraph, LangChain, GPT-4o mini |
+| **Investment plan optimizer** | Writes an investment plan and revises it until its risk grade matches the investor profile | Evaluator-optimizer loop, structured grading, feedback-driven regeneration, iteration limit | LangGraph, LangChain, GPT-4o mini |
 
 ## Results
 
+- **Investment plan optimizer:** target grade "aggressive" for a 29-year-old high-risk investor. The grade swung from "high risk" to "moderate" and back before matching "aggressive" in the 6th evaluation, the last one the iteration limit allowed.
+- **Meal guide:** the planner and the chef workers were tested step by step (for example, a Spaghetti Bolognese walkthrough from an "Italian chef" worker).
 - **Request router:** all four test requests reached the right handler, including "What's the weather like today?" → fallback handler.
-- **Parallel translator:** "Good morning! I hope you have a wonderful day." returned in French, Spanish and Japanese in one run.
-- **Routing demo:** a translation request was classified correctly but produced no output, because the graph had been compiled before its conditional edges were added.
+- **Parallel translator:** one sentence returned in French, Spanish and Japanese in a single run.
 
 ## Key learnings
 
-- Three patterns cover most multi-step LLM workflows: chaining for dependent steps, routing for different request types, parallelization for independent subtasks.
-- A router needs a fallback route; otherwise requests that fit no category have nowhere to go.
-- Parallel branches should each write their own state field, so the aggregator can combine them without conflicts.
-- A compiled LangGraph app is a snapshot: changes to nodes or edges only take effect after compiling again.
+- Basic patterns cover most multi-step workflows: chaining for dependent steps, routing for different request types, parallelization for independent subtasks.
+- The `Send` API makes fan-out dynamic: the number of workers depends on the data, not on the graph definition.
+- In an evaluator-optimizer loop, feedback can overcorrect and make the result oscillate around the target; an explicit iteration limit is what guarantees the loop ends.
+- A router needs a fallback route, and a compiled LangGraph app is a snapshot: changes only take effect after compiling again.
