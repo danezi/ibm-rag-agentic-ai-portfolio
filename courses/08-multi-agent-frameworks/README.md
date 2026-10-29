@@ -53,6 +53,7 @@ flowchart LR
 | **Meal guide (orchestrator-worker)** | Splits a meal list into dishes and writes a cooking guide per dish | Structured output, dynamic fan-out with the `Send` API, reducer to collect results, synthesizer | LangGraph, LangChain, GPT-4o mini |
 | **Investment plan optimizer** | Writes an investment plan and revises it until its risk grade matches the investor profile | Evaluator-optimizer loop, structured grading, feedback-driven regeneration, iteration limit | LangGraph, LangChain, GPT-4o mini |
 | **Research & content crew** | A researcher agent searches the web, a writer agent turns the findings into a blog post, a social media agent writes short posts | CrewAI agents (role, goal, backstory), sequential tasks, web search tool, token usage tracking | CrewAI, Serper, watsonx.ai (Llama 4 Maverick) |
+| **Meal & grocery planner** | Five agents plan a meal, write a grocery list by store section, check the budget, suggest leftover uses and compile a report | Pydantic output models per task, YAML-configured agents (`@CrewBase`), web search | CrewAI, Serper, watsonx.ai (Granite 4) |
 
 ## Results
 
@@ -61,6 +62,7 @@ flowchart LR
 - **Request router:** all four test requests reached the right handler, including "What's the weather like today?" → fallback handler.
 - **Parallel translator:** one sentence returned in French, Spanish and Japanese in a single run.
 - **Research & content crew:** produced a blog post on generative AI adoption with sourced figures. The two-agent run used about 106,000 tokens, roughly 90 % of them input (instructions, search results, previous task output).
+- **Meal & grocery planner:** for "Chicken Stir Fry, 4 people, $25, no nuts, low sodium" the crew returned a recipe, a grocery list grouped by store section with prices, saving tips and leftover ideas. One leftover idea suggested peanut sauce despite the "no nuts" restriction.
 
 ## Key learnings
 
@@ -69,3 +71,4 @@ flowchart LR
 - In an evaluator-optimizer loop, feedback can overcorrect and make the result oscillate around the target; an explicit iteration limit is what guarantees the loop ends.
 - A router needs a fallback route, and a compiled LangGraph app is a snapshot: changes only take effect after compiling again.
 - In CrewAI, sequential tasks hand their output to the next agent as context; that is convenient but makes token costs grow with every step.
+- Pydantic output models turn agent results into validated data; constraints that live only in a prompt (like an allergy) can still be ignored by a later agent and need an explicit check.
