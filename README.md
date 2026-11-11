@@ -38,6 +38,7 @@ The first four courses are also certified as the specialization [RAG for Generat
 - **AI agents:** tool calling with LangChain (`@tool`, `bind_tools`, `create_agent`), hand-written and recursive tool loops, LCEL chains, pandas DataFrame and SQL agents, built-in tools (Wikipedia, YouTube)
 - **Agentic workflows:** LangGraph state graphs with nodes, conditional edges and loops; workflow patterns (prompt chaining, routing, parallelization, orchestrator-worker, evaluator-optimizer); self-improving reflection agents; multi-agent RAG with relevance checking and answer verification
 - **Multi-agent systems:** CrewAI crews with role-based agents, sequential tasks, Pydantic-structured outputs, YAML configuration, web and PDF search tools, custom tools
+- **Model Context Protocol (MCP):** MCP clients over STDIO and Streamable HTTP, multi-server agents with langchain-mcp-adapters
 - **Delivery:** Gradio and Flask web apps, structured JSON responses
 
 ## Course progress
@@ -54,7 +55,7 @@ Legend: 🟢 Done · 🟡 In progress · ⚪ Not started
 | 6 | [Fundamentals of Building AI Agents](courses/06-building-ai-agents/README.md) | 🟢 Done |
 | 7 | [Agentic AI with LangChain and LangGraph](courses/07-agentic-ai-langchain-langgraph/README.md) | 🟢 Done |
 | 8 | [Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI](courses/08-multi-agent-frameworks/README.md) | 🟢 Done |
-| 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | 🟡 In progress (~15%) |
+| 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | 🟡 In progress (~30%) |
 | 10 | [RAG and Agentic AI Capstone Project](courses/10-capstone-project/README.md) | ⚪ Not started |
 
 ## About the code
