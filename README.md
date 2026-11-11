@@ -54,7 +54,7 @@ Legend: 🟢 Done · 🟡 In progress · ⚪ Not started
 | 6 | [Fundamentals of Building AI Agents](courses/06-building-ai-agents/README.md) | 🟢 Done |
 | 7 | [Agentic AI with LangChain and LangGraph](courses/07-agentic-ai-langchain-langgraph/README.md) | 🟢 Done |
 | 8 | [Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI](courses/08-multi-agent-frameworks/README.md) | 🟢 Done |
-| 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | ⚪ Not started |
+| 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | 🟡 In progress (~15%) |
 | 10 | [RAG and Agentic AI Capstone Project](courses/10-capstone-project/README.md) | ⚪ Not started |
 
 ## About the code
