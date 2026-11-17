@@ -1,10 +1,10 @@
 # 09 · Build AI Agents using MCP
 
-[Course on Coursera](https://www.coursera.org/learn/build-ai-agents-using-mcp) · Status: 🟡 In progress (~70%)
+[Course on Coursera](https://www.coursera.org/learn/build-ai-agents-using-mcp) · Status: 🟡 In progress (~85%)
 
 ## What I built
 
-My own MCP server for file operations, with all three MCP building blocks: tools that write and delete files, resources that read files and list the directory, and prompts for code review and documentation generation. The server can ask the user for missing input mid-request and reports progress while writing. A matching command-line client connects an LLM to it. I also wrote a minimal MCP client with the low-level MCP Python SDK that manages the session itself and calls a server's tools, resources and prompts from a command line. Earlier in the course, I built a CLI assistant whose agent uses tools from two existing MCP servers at once (Context7 library documentation and the Met Museum collection), and a Python client that talks to an MCP server over both STDIO and Streamable HTTP.
+My own MCP server for file operations, with all three MCP building blocks: tools that write and delete files, resources that read files and list the directory, and prompts for code review and documentation generation. The server can ask the user for missing input mid-request and reports progress while writing. A matching command-line client connects an LLM to it. I also wrote a minimal MCP client with the low-level MCP Python SDK that manages the session itself and calls a server's tools, resources and prompts from a command line. To make tool use safe, I built a permission layer: every tool has a risk level and a policy (allow, ask, deny), risky actions need the user's approval, and every decision is logged. It runs in a Gradio client and in an AI chat host where an LLM calls the tools. Earlier in the course, I built a CLI assistant whose agent uses tools from two existing MCP servers at once (Context7 library documentation and the Met Museum collection), and a Python client that talks to an MCP server over both STDIO and Streamable HTTP.
 
 ## Architecture
 
@@ -18,6 +18,18 @@ flowchart LR
     S --> R["Resources<br/>file:///{name} · dir://."]
     S --> P["Prompts<br/>code_review ·<br/>documentation_generator"]
     S -.->|"elicitation,<br/>progress, logs"| CL
+```
+
+**Permission-aware AI host**
+
+```mermaid
+flowchart LR
+    U["User<br/>(Gradio chat)"] --> L["LLM<br/>(function calling)"]
+    L -->|"tool call"| P{"Policy check<br/>+ risk level"}
+    P -->|allow| S["MCP server<br/>(STDIO)"]
+    P -->|ask| A["User approval"] -->|yes| S
+    P -->|deny| D["Blocked"]
+    P -.-> LOG[("Audit log")]
 ```
 
 **MCP application (multi-server agent)**
@@ -38,6 +50,7 @@ flowchart LR
 | **Multi-server MCP assistant** | CLI assistant that answers questions about library documentation and the Met Museum collection | Multi-server MCP client, MCP tools as LangChain tools, ReAct agent with session memory, mixed STDIO and HTTP servers | LangGraph, langchain-mcp-adapters, GPT-4o mini |
 | **File operations MCP server** | Lets an LLM write, delete, read and list files, review code and generate documentation through MCP | Tools, resources and resource templates, prompts, elicitation with a Pydantic schema, progress reporting, path restriction to the project directory | FastMCP, Pydantic, LLM via API |
 | Custom MCP client | Command-line client that lists and calls a server's tools, reads files through a resource template and renders prompts | `ClientSession` over STDIO, session lifecycle with `AsyncExitStack`, JSON arguments with error handling, operation history | MCP Python SDK, FastMCP |
+| **Permission-aware AI host** | Chat assistant and manual client that use file tools only within user-defined permissions | Risk levels per tool, allow/ask/deny policies, human approval before risky actions, audit log, MCP tools as LLM function calls | MCP Python SDK, FastMCP, Gradio, OpenAI API |
 
 ## Results
 
@@ -53,3 +66,4 @@ flowchart LR
 - An MCP server describes its own tools (name, description, JSON input schema), so any client or agent can discover and call them; the transport (STDIO or Streamable HTTP) is interchangeable.
 - Adding a capability to an agent means adding a server entry: the adapter turns every server's tools into agent tools, and local and remote servers can be mixed in one client.
 - A low-level client owns the session lifecycle: connect, initialize, use, and always close the connection, even after an error.
+- A permission check in the client does not protect the server: any other client could call the same tools directly. Safe systems check on both sides and log every decision.
