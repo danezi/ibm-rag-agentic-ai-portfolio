@@ -1,6 +1,6 @@
 # 09 · Build AI Agents using MCP
 
-[Course on Coursera](https://www.coursera.org/learn/build-ai-agents-using-mcp) · Status: 🟡 In progress (~95%)
+[Course on Coursera](https://www.coursera.org/learn/build-ai-agents-using-mcp) · Status: 🟢 Done
 
 ## What I built
 
