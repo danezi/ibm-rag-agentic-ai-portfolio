@@ -47,6 +47,7 @@ flowchart LR
 - **Multi-agent recommender:** two test users (vegan, adventurous foodie) each got 5 restaurant and 5 recipe recommendations; for the vegan user, the first one was a place they had already visited 8 times.
 - **Connoisseur Companion:** multi-step questions worked ("find a moody restaurant, then show the review of the highest-rated one"). For "rating above 4.5, not too expensive", it recommended a restaurant rated 4.1.
 
+  ![Date-night recommendation with signature dish and price range](../../assets/screenshots/10-connoisseur-companion-date-night.png)
   ![The agent ignores the rating limit](../../assets/screenshots/10-connoisseur-companion-constraint.png)
 
 ## Key learnings
