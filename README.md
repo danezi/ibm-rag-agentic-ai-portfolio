@@ -8,6 +8,7 @@ The first four courses are also certified as the specialization [RAG for Generat
 
 | | Project | What it does |
 |---|---|---|
+| ![Connoisseur Companion](assets/screenshots/10-connoisseur-companion-multi-step.png) | **[Connoisseur Companion (capstone)](courses/10-capstone-project/README.md)** | End-to-end food recommendation assistant: LLM-structured restaurant data, a multimodal vector index (text + images), a multi-agent recommender, and a chat app whose LLM answers through MCP tools. |
 | ![YouTube RAG Q&A](assets/screenshots/04-youtube-rag-qa-hallucinations.png) | **[YouTube Summarizer & Q&A](courses/04-advanced-rag-retrievers/README.md)** | Gradio app that summarizes any YouTube video and answers questions about it. Transcript chunks are embedded into FAISS and only the most relevant ones are passed to the LLM. Also answers questions asked in German about English videos. |
 | ![Food RAG chatbot](assets/screenshots/03-food-rag-system-comparison.png) | **[Food Recommendation RAG Chatbot](courses/03-vector-databases-for-rag/README.md)** | Three search systems on one ChromaDB core (~185 dishes): semantic search, metadata-filtered search and a RAG chatbot that recommends dishes with IBM Granite. |
 | ![Meeting assistant](assets/screenshots/05-meeting-assistant-minutes.png) | **[AI Meeting Assistant](courses/05-multimodal-generative-ai/README.md)** | Turns a meeting recording into minutes and a task list: Whisper transcription, an LLM pass that normalizes financial terminology, then structured minutes. |
@@ -34,7 +35,7 @@ The first four courses are also certified as the specialization [RAG for Generat
 - **LLM applications:** prompt engineering (few-shot, chain-of-thought), prompt templates, output parsers with Pydantic schemas, LCEL chains, model comparison (Granite, Llama, Mistral, GPT)
 - **RAG:** document parsing (Docling), loading and chunking, embeddings, retrievers (MMR, multi-query, self-query, parent document, BM25, query fusion), grounded prompts
 - **Vector databases:** ChromaDB collections with metadata filters, FAISS indexes, cosine / L2 / dot-product similarity
-- **Multimodal AI:** speech-to-text (Whisper), text-to-speech (gTTS), image generation, image captioning and visual Q&A, multimodal RAG with image embeddings
+- **Multimodal AI:** speech-to-text (Whisper), text-to-speech (gTTS), image generation, image captioning and visual Q&A, multimodal RAG with image embeddings, text + image vector fusion (CLIP)
 - **AI agents:** tool calling with LangChain (`@tool`, `bind_tools`, `create_agent`), hand-written and recursive tool loops, LCEL chains, pandas DataFrame and SQL agents, built-in tools (Wikipedia, YouTube)
 - **Agentic workflows:** LangGraph state graphs with nodes, conditional edges and loops; workflow patterns (prompt chaining, routing, parallelization, orchestrator-worker, evaluator-optimizer); self-improving reflection agents; multi-agent RAG with relevance checking and answer verification
 - **Multi-agent systems:** CrewAI crews with role-based agents, sequential tasks, Pydantic-structured outputs, YAML configuration, web and PDF search tools, custom tools
@@ -56,7 +57,7 @@ Legend: 🟢 Done · 🟡 In progress · ⚪ Not started
 | 7 | [Agentic AI with LangChain and LangGraph](courses/07-agentic-ai-langchain-langgraph/README.md) | 🟢 Done |
 | 8 | [Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI](courses/08-multi-agent-frameworks/README.md) | 🟢 Done |
 | 9 | [Build AI Agents using MCP](courses/09-ai-agents-mcp/README.md) | 🟢 Done |
-| 10 | [RAG and Agentic AI Capstone Project](courses/10-capstone-project/README.md) | ⚪ Not started |
+| 10 | [RAG and Agentic AI Capstone Project](courses/10-capstone-project/README.md) | 🟡 In progress (~95%) |
 
 ## About the code
 
